@@ -1,12 +1,22 @@
 import React from 'react';
-import ExampleComponent from './components/ExampleComponent';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CartRoute from './routes/CartRoute';
+import ProductRoute from './routes/ProductRoute';
+import HomeRoute from './routes/HomeRoute';
+import OrderSuccessRoute from './routes/OrderSuccessRoute';
 
 const App: React.FC = () => {
     return (
-        <div>
-            <h1>Welcome to My React App</h1>
-            <ExampleComponent />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path='' element={<HomeRoute />} />
+                <Route path='product/:product_id' element={<ProductRoute />} />
+                <Route path='cart' element={<CartRoute />} />
+                <Route path='order_success' element={<OrderSuccessRoute />} />
+
+                {/* <Route path='stripe_webhooks' /> */}
+            </Routes>
+        </BrowserRouter>
     );
 };
 
