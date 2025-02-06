@@ -3,7 +3,7 @@ import PrintfulService from "./PrintfulService";
 
 export default class ShopService {
     // Returns all product entries in the database or creates them if they don't exist
-    static async getAllProducts() {
+    static async getAllProducts(): Promise<Product[]> {
         const syncs = await PrintfulService.getAllProducts();
         const products: Product[] = syncs.map((sync: any) => ({
             id: sync.id,

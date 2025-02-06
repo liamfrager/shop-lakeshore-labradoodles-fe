@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import OrderService from "./OrderService";
 import { Cart } from "../types";
 
-const STRIPE_API_KEY: string = process.env.STRIPE_API_KEY!;
+const STRIPE_API_KEY: string = process.env.REACT_APP_STRIPE_API_KEY!;
 
 // A class that interacts with the Stripe API. Initialize with Stripe API key to link this object with your account
 export default class StripeService {
