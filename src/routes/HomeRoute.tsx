@@ -19,7 +19,7 @@ export default function HomeRoute() {
             {products.length > 0 &&
                 <div>
                     {products.map(product => (
-                        <div>
+                        <div key={product.id}>
                             <Link to={`/product/${product.id}`}>
                                 <div>
                                     <img src={product.image} alt={product.name} />
