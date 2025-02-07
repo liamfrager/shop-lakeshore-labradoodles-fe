@@ -1,7 +1,29 @@
+:root {
+    /* BRAND COLORS */
+    --cream: #F4EDE5;
+    --tan: #DEA36D;
+    --light-brown: #9B572A;
+    --brown: #4F3528;
+    --blue: #248CC2;
+    /* NEUTRAL COLORS */
+    --white: white;
+    --light: #f9f9f9;
+    --dark: #454545;
+    --black: black;
+}
+
 body {
     margin: 0;
 }
 
 * {
-    font-family: sans-serif;
+    font-family: 'Merriweather', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato', sans-serif
+}
+
+a {
+    color: var(--blue);
 }

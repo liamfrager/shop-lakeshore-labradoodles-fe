@@ -1,5 +1,5 @@
 nav {
-    background-color: #f9f9f9;
+    background-color: var(--light);
     padding: 1em;
     display: flex;
     flex-direction: row;
@@ -11,9 +11,9 @@ nav {
             list-style: none;
             margin-right: 1em;
             text-decoration: none;
-            color: #444444;
+            color: var(--dark);
             &:hover {
-                color: #000000;
+                color: var(--black);
             }
         }
     }
