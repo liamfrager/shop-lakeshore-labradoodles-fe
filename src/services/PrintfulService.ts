@@ -26,7 +26,7 @@ export default class PrintfulService {
     // Takes a Printful sync variant ID as an input and returns details on that variant
     public static async getVariant(id: number) {
         const response = await axios.get(`${this.apiEndpoint}/variants/${id}`);
-        return response.data.sync_variant;
+        return response.data;
     }
 
     // Takes a Printful product variant ID as an input and returns the color code associated with that variant

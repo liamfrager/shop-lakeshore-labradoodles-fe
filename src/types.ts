@@ -57,13 +57,12 @@ export type CartData = {
 
 export type Cart = {
     items: { [id: number]: CartItem },
-    orderTotal: number,
 }
 
 export type CartItem = {
+    id: number,
     name: string,
     price: number,
-    totalPrice: number,
-    img: string,
+    img?: string,
     quantity: number,
 }

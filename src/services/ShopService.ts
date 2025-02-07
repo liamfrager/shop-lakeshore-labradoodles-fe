@@ -61,7 +61,7 @@ export default class ShopService {
             if (!variantIDs[variant.color]) {
                 variantIDs[variant.color] = {};
             }
-            variantIDs[variant.color][variant.size] = variant.variant_id;
+            variantIDs[variant.color][variant.size] = variant.id;
         }));
 
         // Create product object

@@ -17,13 +17,10 @@ export default class CartService {
     }
 
     // Adds an item to the cart
-    public static addItem(id: number, quantity: number): void {
+    public static setItem(id: number, quantity: number): void {
         const cart = this.getCartData();
-        if (cart.items[id]) {
-            cart.items[id] += quantity;
-        } else {
-            cart.items[id] = quantity;
-        }
+        cart.items[id] = quantity;
+        this.saveCartData(cart);
     }
 
     // Removes an item from the cart
@@ -46,9 +43,9 @@ export default class CartService {
                 for (const [id, quantity] of Object.entries(cartData.items)) {
                     const variant = await PrintfulService.getVariant(Number(id));
                     const cartItem: CartItem = {
+                        id: Number(id),
                         name: variant.name,
                         price: Number(variant.retail_price),
-                        totalPrice: Number(variant.retail_price) * Number(quantity),
                         img: variant.files[variant.files.length - 1].thumbnail_url,
                         quantity: Number(quantity),
                     };
@@ -56,7 +53,6 @@ export default class CartService {
                 }
                 return items;
             })(),
-            orderTotal: 0,
         }
         return cart;
     }

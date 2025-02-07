@@ -32,7 +32,7 @@ export default function ProductRoute() {
     const handleAddToCart = (e: React.FormEvent) => {
         e.preventDefault();
         const variantID = product!.variantIDs[color!.name][size!];
-        CartService.addItem(variantID, 1);
+        CartService.setItem(variantID, 1);
         navigate('/cart');
     }
 
