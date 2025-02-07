@@ -12,18 +12,20 @@ const App: React.FC = () => {
     return (
         <>
             <BrowserRouter>
-                <Header />
-                <Content>
-                    <Routes>
-                        <Route path='' element={<HomeRoute />} />
-                        <Route path='product/:id' element={<ProductRoute />} />
-                        <Route path='cart' element={<CartRoute />} />
-                        <Route path='success' element={<OrderSuccessRoute />} />
+                <div className='app-container'>
+                    <Header />
+                    <Content>
+                        <Routes>
+                            <Route path='' element={<HomeRoute />} />
+                            <Route path='product/:id' element={<ProductRoute />} />
+                            <Route path='cart' element={<CartRoute />} />
+                            <Route path='success' element={<OrderSuccessRoute />} />
 
-                        {/* <Route path='webhooks' element={<WebhookHandler />}/> */}
-                    </Routes>
-                </Content>
-                <Footer />
+                            {/* <Route path='webhooks' element={<WebhookHandler />}/> */}
+                        </Routes>
+                    </Content>
+                    <Footer />
+                </div>
             </BrowserRouter>
         </>
     );

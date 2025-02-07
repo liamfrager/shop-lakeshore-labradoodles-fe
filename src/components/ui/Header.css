@@ -4,6 +4,10 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
     ul {
         display: flex;
         flex-direction: row;

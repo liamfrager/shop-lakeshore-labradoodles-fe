@@ -1,16 +1,22 @@
 :root {
     /* BRAND COLORS */
-    --cream: #F4EDE5;
-    --tan: #DEA36D;
-    --light-brown: #9B572A;
-    --brown: #4F3528;
-    --blue: #248CC2;
+    --cream: #f4ede5;
+    --tan: #dea36d;
+    --light-brown: #9b572a;
+    --brown: #4f3528;
+    --blue: #248cc2;
     /* NEUTRAL COLORS */
-    --white: white;
-    --light: #f9f9f9;
-    --dim: #cccccc;
-    --dark: #454545;
-    --black: black;
+    --white: #fff;
+    --light: #fafafa;
+    --dim: #ccc;
+    --dark: #555;
+    --black: #000;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 body, p {

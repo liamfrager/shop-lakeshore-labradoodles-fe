@@ -2,7 +2,8 @@ export default function Content(props: { children: React.ReactElement }) {
     return (
         <div style={{
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexGrow: 1,
         }}
         >
             <div style={{
