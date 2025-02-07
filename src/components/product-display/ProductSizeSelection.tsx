@@ -1,5 +1,3 @@
-import { Color } from "../../types";
-
 interface ProductSizeSelectionProps {
     sizes: string[],
     onChange: (size: string) => void,
