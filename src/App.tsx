@@ -6,20 +6,23 @@ import HomeRoute from './routes/HomeRoute';
 import OrderSuccessRoute from './routes/OrderSuccessRoute';
 import Header from './components/ui/Header';
 import Footer from './components/ui/Footer';
+import Content from './components/ui/Content';
 
 const App: React.FC = () => {
     return (
         <>
             <BrowserRouter>
                 <Header />
-                <Routes>
-                    <Route path='' element={<HomeRoute />} />
-                    <Route path='product/:id' element={<ProductRoute />} />
-                    <Route path='cart' element={<CartRoute />} />
-                    <Route path='success' element={<OrderSuccessRoute />} />
+                <Content>
+                    <Routes>
+                        <Route path='' element={<HomeRoute />} />
+                        <Route path='product/:id' element={<ProductRoute />} />
+                        <Route path='cart' element={<CartRoute />} />
+                        <Route path='success' element={<OrderSuccessRoute />} />
 
-                    {/* <Route path='webhooks' element={<WebhookHandler />}/> */}
-                </Routes>
+                        {/* <Route path='webhooks' element={<WebhookHandler />}/> */}
+                    </Routes>
+                </Content>
                 <Footer />
             </BrowserRouter>
         </>

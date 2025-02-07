@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Product } from "../types";
 import ShopService from "../services/ShopService";
 import { useEffect, useState } from "react";
+import ProductCard from "../components/product-display/ProductCard";
+import DynamicDisplay from "../components/ui/DynamicDisplay";
 
 export default function HomeRoute() {
 
@@ -17,21 +19,9 @@ export default function HomeRoute() {
         <>
             <h1>Lakeshore Labradoodles Merch Shop!</h1>
             {products.length > 0 &&
-                <div>
-                    {products.map(product => (
-                        <div key={product.id}>
-                            <Link to={`/product/${product.id}`}>
-                                <div>
-                                    <img src={product.image} alt={product.name} />
-                                    <div>
-                                        <span>{product.name}</span>
-                                        <p>{product.description}</p>
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-                    ))}
-                </div >
+                <DynamicDisplay>
+                    {products.map(product => <ProductCard key={product.id} product={product} />)}
+                </DynamicDisplay>
             }
         </>
     );
