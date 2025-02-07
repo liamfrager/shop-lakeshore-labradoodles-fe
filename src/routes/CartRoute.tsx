@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Cart } from "../types";
 import CartService from "../services/CartService";
 import CartItemDisplay from "../components/cart/CartItemDisplay";
+import OrderService from "../services/OrderService";
 
 export default function CartRoute() {
     const [cart, setCart] = useState<Cart>();
@@ -34,9 +35,9 @@ export default function CartRoute() {
         });
     }
 
-    const handleCheckout = () => {
-        console.log('Checking out...');
-        console.log(cart);
+    const handleCheckout = async () => {
+        const stripeCheckoutURL: string = await OrderService.checkoutCart();
+        window.location.href = stripeCheckoutURL;
     }
 
     return (

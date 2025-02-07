@@ -12,9 +12,9 @@ const App: React.FC = () => {
                 <Route path='' element={<HomeRoute />} />
                 <Route path='product/:id' element={<ProductRoute />} />
                 <Route path='cart' element={<CartRoute />} />
-                <Route path='order_success' element={<OrderSuccessRoute />} />
+                <Route path='success' element={<OrderSuccessRoute />} />
 
-                {/* <Route path='stripe_webhooks' /> */}
+                {/* <Route path='webhooks' element={<WebhookHandler />}/> */}
             </Routes>
         </BrowserRouter>
     );
