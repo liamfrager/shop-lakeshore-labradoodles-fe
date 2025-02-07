@@ -7,6 +7,7 @@ export default class OrderService {
     private static apiEndpoint = process.env.REACT_APP_BE_ENDPOINT;
 
     static async checkoutCart(): Promise<string> {
+        localStorage.setItem('checkoutInProgress', 'True');
         const cart: Cart = await CartService.getCart();
         // TODO: verify that all items in the cart still exist/are in stock through printful.
         console.log('checking out cart: ', cart);
