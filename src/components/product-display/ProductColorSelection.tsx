@@ -7,7 +7,7 @@ interface ProductColorSelectionProps {
 
 export default function ProductColorSelection(props: ProductColorSelectionProps) {
     return (
-        <>
+        <div>
             {Array.from(props.colors).map(color => (
                 <>
                     <input
@@ -19,6 +19,6 @@ export default function ProductColorSelection(props: ProductColorSelectionProps)
                     />
                 </>
             ))}
-        </>
+        </div>
     );
 };

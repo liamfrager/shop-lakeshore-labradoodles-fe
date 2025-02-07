@@ -6,6 +6,7 @@ import ProductColorSelection from "../components/product-display/ProductColorSel
 import ProductSizeSelection from "../components/product-display/ProductSizeSelection";
 import CartService from "../services/CartService";
 import ProductImageDisplay from "../components/product-display/ProductImageDisplay";
+import './ProductRoute.css';
 
 export default function ProductRoute() {
 
@@ -41,16 +42,16 @@ export default function ProductRoute() {
             {product &&
                 <>
                     <h1>{product.name}</h1>
-                    <h1>{`$${price}`}</h1>
+                    <div className="dynamic-two-columns">
+                        {color && <ProductImageDisplay images={product.previewImages[color.name]} />}
 
-                    {color && <ProductImageDisplay images={product.previewImages[color.name]} />}
-
-                    <form onSubmit={handleAddToCart}>
-                        <ProductColorSelection colors={product.colors} onChange={setColor} />
-                        <ProductSizeSelection sizes={product.sizes} onChange={setSize} />
-                        <button type="submit">Add to Cart</button>
-                    </form>
-
+                        <form onSubmit={handleAddToCart} className="product-form">
+                            <h1>{`$${price}`}</h1>
+                            <ProductColorSelection colors={product.colors} onChange={setColor} />
+                            <ProductSizeSelection sizes={product.sizes} onChange={setSize} />
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
                 </>
             }
         </>

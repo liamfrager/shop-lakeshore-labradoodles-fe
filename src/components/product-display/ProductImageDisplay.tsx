@@ -13,10 +13,14 @@ export default function ProductImageDisplay(props: ProductImageDisplayProps) {
     }, [props.images])
 
     return (
-        <>
+        <div>
             {props.images.length > 1 && <span onClick={() => setI(i - 1)}>{"<"}</span>}
-            <img src={props.images[i]} alt="product preview" />
+            <img
+                style={{ maxWidth: '100%' }}
+                src={props.images[i]}
+                alt="product preview"
+            />
             {props.images.length > 1 && <span onClick={() => setI(i + 1)}>{">"}</span>}
-        </>
+        </div>
     )
 }

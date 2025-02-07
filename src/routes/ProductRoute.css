@@ -1,0 +1,22 @@
+.product-form {
+    display: flex;
+    flex-direction: column;
+    & > * {
+        margin: .5em 0;
+    }
+}
+
+.dynamic-two-columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    & > :first-child {
+        flex-grow: 2;
+        flex-basis: 25em;
+    }
+
+    & > :last-child {
+        flex-grow: 1;
+    }
+}
