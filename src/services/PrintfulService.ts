@@ -31,8 +31,8 @@ export default class PrintfulService {
 
     // Takes a Printful product variant ID as an input and returns the color code associated with that variant
     public static async getColorCode(id: number) {
-        const response = await axios.get(`${this.apiEndpoint}/products/variants/${id}`);
-        return response.data.variant.color_code;
+        const response = await axios.get(`${this.apiEndpoint}/products/${id}/color`);
+        return response.data;
     }
 
     // Takes Printful order data as an input and places an order. Returns an API response from Printful

@@ -10,7 +10,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <Routes>
                 <Route path='' element={<HomeRoute />} />
-                <Route path='product/:product_id' element={<ProductRoute />} />
+                <Route path='product/:id' element={<ProductRoute />} />
                 <Route path='cart' element={<CartRoute />} />
                 <Route path='order_success' element={<OrderSuccessRoute />} />
 

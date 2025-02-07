@@ -5,9 +5,12 @@ export type Product = {
     image: string,
     previewImages: { [color: string]: string[] },
     sizePrices: { [size: string]: string},
-    colors: Color[],
+    colors: Set<Color>,
     sizes: string[],
+    variantIDs: VariantIDMap,
 };
+
+export type VariantIDMap = { [color: string]: { [size: string]: number } };
 
 export type Variant = {
     id: number, // Printful variant ID

@@ -1,4 +1,4 @@
-import { Color, Product } from "../types";
+import { Color, Product, VariantIDMap } from "../types";
 import PrintfulService from "./PrintfulService";
 
 export default class ShopService {
@@ -26,38 +26,43 @@ export default class ShopService {
                 return (indexA === -1 ? Infinity : indexA) - (indexB === -1 ? Infinity : indexB) || a.localeCompare(b);
             });
 
-        const colors: Color[] = [];
+        const colors: Set<Color> = new Set();
         const sizePrices: { [size: string]: string } = {};
         const previewImages: { [color: string]: string[] } = {};
+        const variantIDs: VariantIDMap = {};
 
-        sync.sync_variants.forEach((variant: any) => {
+        const colorCache: string[] = [];
+        await Promise.all(sync.sync_variants.map(async (variant: any) => {
             // Get product colors
-            const color: Color = {
-                name: variant.color,
-                code: '',
-            }
-            if (!colors.includes(color)) {
-                colors.push(color);
+            if (!colorCache.some(color => color === variant.color)) {
+                colorCache.push(variant.color);
+                colors.add({
+                    name: variant.color,
+                    code: await PrintfulService.getColorCode(variant.variant_id),
+                });
             }
 
             // Get product variant prices
-            const size = variant.size;
-            if (!sizePrices[size]) {
-                sizePrices[size] = variant.retail_price;
-            }
+            sizePrices[variant.size] = variant.retail_price;
 
             // Get preview images
-            if (!previewImages[color.name]) {
+            if (!previewImages[variant.color]) {
                 variant.files.forEach((file: any) => {
                     if (file.filename.endsWith('.jpg')) {
-                        if (!previewImages[color.name]) {
-                            previewImages[color.name] = [];
+                        if (!previewImages[variant.color]) {
+                            previewImages[variant.color] = [];
                         }
-                        previewImages[color.name].push(file.preview_url);
+                        previewImages[variant.color].push(file.preview_url);
                     }
                 });
             }
-        });
+
+            // Get variant ID
+            if (!variantIDs[variant.color]) {
+                variantIDs[variant.color] = {};
+            }
+            variantIDs[variant.color][variant.size] = variant.variant_id;
+        }));
 
         // Create product object
         const product: Product = {
@@ -69,8 +74,8 @@ export default class ShopService {
             previewImages: previewImages,
             sizePrices: sizePrices,
             colors: colors,
+            variantIDs: variantIDs,
         };
-
         return product;
     }
 }
