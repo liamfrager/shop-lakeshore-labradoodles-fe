@@ -5,7 +5,7 @@ export type Product = {
     image: string,
     previewImages: { [color: string]: string[] },
     sizePrices: { [size: string]: string},
-    colors: Set<Color>,
+    colors: Color[],
     sizes: string[],
     variantIDs: VariantIDMap,
 };

@@ -73,7 +73,7 @@ export default class ShopService {
             sizes: sizes,
             previewImages: previewImages,
             sizePrices: sizePrices,
-            colors: colors,
+            colors: Array.from(colors).sort((a, b) => a.name.localeCompare(b.name)),
             variantIDs: variantIDs,
         };
         return product;

@@ -10,7 +10,7 @@ export default function ProductImageDisplay(props: ProductImageDisplayProps) {
 
     useEffect(() => {
         setI(0);
-    }, [props.images])
+    }, [])
 
     return (
         <div>

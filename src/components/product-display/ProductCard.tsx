@@ -11,7 +11,7 @@ export default function ProductCard(props: ProductCardProps) {
 
     return (
         <Link to={`/product/${product.id}`}>
-            <div className="card">
+            <div className="card shadow">
                 <img src={product.image} alt={product.name} />
                 <div className="caption">
                     <p>{product.name}</p>

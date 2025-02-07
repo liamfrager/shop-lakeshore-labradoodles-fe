@@ -8,6 +8,7 @@
     /* NEUTRAL COLORS */
     --white: white;
     --light: #f9f9f9;
+    --dim: #cccccc;
     --dark: #454545;
     --black: black;
 }
@@ -17,14 +18,65 @@ body, p {
 }
 
 * {
-    font-family: 'Merriweather', serif;
+    font-family: 'Lato', sans-serif;
     box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lato', sans-serif
+p {
+    font-family: 'Merriweather', serif;
 }
 
 a {
     color: var(--blue);
+}
+/* CLASSES */
+.shadow, button {
+    box-shadow:
+        1px 1px 5px rgba(0, 0, 0, 0.2),
+        3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* FORM ELEMENTS */
+button {
+    background-color: var(--blue);
+    color: var(--white);
+    border: 1px solid var(--blue);
+    border-radius: .5em;
+    padding: .5em;
+    font-size: .8em;
+    cursor: pointer;
+    transition: all .3s;
+    &:hover {
+        background-color: var(--white);
+        color: var(--blue);
+        transition: all .3s;
+    }
+}
+
+select {
+    background-color: var(--light);
+    border: 1px solid var(--dim);
+    border-radius: .5em;
+    padding: 0.5em 3.5em 0.5em 1em;
+    font-size: .8em;
+    color: var(--dark);
+    cursor: pointer;
+    
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--dark) 50%),
+        linear-gradient(135deg, var(--dark) 50%, transparent 50%),
+        linear-gradient(to right, var(--dim), var(--dim));
+    background-position:
+        calc(100% - 17px),
+        calc(100% - 12px),
+        calc(100% - 2.5em);
+    background-size:
+        5px 5px,
+        5px 5px,
+        1px 1.5em;
+    background-repeat: no-repeat;
+}
+
+button, select {
+    appearance: none;
 }

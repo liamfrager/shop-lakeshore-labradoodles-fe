@@ -12,11 +12,12 @@
     flex-wrap: wrap;
 
     & > :first-child {
-        flex-grow: 2;
+        flex-grow: 5;
         flex-basis: 25em;
     }
 
     & > :last-child {
-        flex-grow: 1;
+        flex-grow: 3;
+        flex-basis: 15em;
     }
 }
