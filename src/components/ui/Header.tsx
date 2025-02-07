@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom"
-import Logo from "./Logo"
+import { Link } from "react-router-dom";
+import Logo from "./Logo";
+import './Header.css';
 
 export default function Header() {
 
@@ -15,11 +16,9 @@ export default function Header() {
             </Link>
             <ul>
                 {menuItems.map(menuItem => (
-                    <li key={menuItem.name}>
-                        <Link to={menuItem.route} >
-                            {menuItem.name}
-                        </Link>
-                    </li>
+                    <Link to={menuItem.route} key={menuItem.name}>
+                        <li>{menuItem.name}</li>
+                    </Link>
                 ))}
             </ul>
         </nav>
