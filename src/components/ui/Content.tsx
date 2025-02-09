@@ -9,11 +9,11 @@ export default function Content(props: { children: React.ReactElement }) {
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
-                marginInline: '1em',
+                marginInline: '5em',
                 flexGrow: 0,
                 flexShrink: 1,
                 flexBasis: '105em',
-                paddingBottom: '1em',
+                paddingBottom: '2em',
             }}
             >
                 {props.children}
