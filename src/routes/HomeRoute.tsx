@@ -5,25 +5,56 @@ import { useEffect, useState } from "react";
 import ProductCard from "../components/product-display/ProductCard";
 import DynamicDisplay from "../components/ui/DynamicDisplay";
 import Loader from "../components/ui/Loader";
+import ProductCategories from "../components/product-display/ProductCategories";
 
 export default function HomeRoute() {
 
-    let [products, setProducts] = useState<Product[]>();
+    const [allProducts, setAllProducts] = useState<Product[]>();
+    const [displayedProducts, setDisplayedProducts] = useState<Product[]>();
+    const [selectedCategory, setSelectedCategory] = useState<string>('All Products');
+    const [allCategories, setAllCategories] = useState<string[]>([]);
 
 
     useEffect(() => {
-        ShopService.getAllProducts().then(data => setProducts(data));
+        ShopService.getAllProducts().then(data => {
+            setAllProducts(data);
+            setDisplayedProducts(data);
+            // Get categories
+            let existsOthers = false;
+            const categories = new Set<string>();
+            data.forEach(product => {
+                if (product.category === null) {
+                    existsOthers = true;
+                    return;
+                }
+                categories.add(product.category);
+            });
+            const categoriesArray = Array.from(categories);
+            if (existsOthers) categoriesArray.push('Other');
+            setAllCategories(categoriesArray);
+        });
     }, []);
+
+    useEffect(() => {
+        if (selectedCategory === 'All Products') {
+            setDisplayedProducts(allProducts);
+        } else if (selectedCategory === 'Other') {
+            setDisplayedProducts(allProducts?.filter(product => product.category === null));
+        } else {
+            setDisplayedProducts(allProducts?.filter(product => product.category === selectedCategory));
+        }
+    }, [selectedCategory]);
 
 
     return (
         <>
             <h1>Products</h1>
-            {products ? (
+            {displayedProducts ? (
                 <>
-                    {products.length > 0 ? (
+                    <ProductCategories categories={allCategories} selectedCategory={selectedCategory} onCategorySelect={setSelectedCategory} />
+                    {displayedProducts.length > 0 ? (
                         <DynamicDisplay>
-                            {products.map(product => <ProductCard key={product.id} product={product} />)}
+                            {displayedProducts.map(product => <ProductCard key={product.id} product={product} />)}
                         </DynamicDisplay>
                     ) : (
                         <span>Could not load any items...</span>

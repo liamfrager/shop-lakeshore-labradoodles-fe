@@ -8,6 +8,7 @@ export type Product = {
     colors: Color[],
     sizes: string[],
     variantIDs: VariantIDMap,
+    category: string | null,
 };
 
 export type VariantIDMap = { [color: string]: { [size: string]: number } };

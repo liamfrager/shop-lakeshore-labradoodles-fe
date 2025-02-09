@@ -1,0 +1,16 @@
+.product-categories {
+    gap: 1em;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+}
+
+.product-category {
+    max-width: fit-content;
+    word-wrap: none;
+    margin: 0;
+    cursor: pointer;
+}
+
+.selected-category {
+    color: var(--blue);
+}

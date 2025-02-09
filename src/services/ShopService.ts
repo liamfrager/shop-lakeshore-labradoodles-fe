@@ -9,6 +9,7 @@ export default class ShopService {
             id: sync.id,
             name: sync.name,
             image: sync.thumbnail_url,
+            category: this.getCategory(sync),
         }));
         return products;
     }
@@ -75,7 +76,17 @@ export default class ShopService {
             sizePrices: sizePrices,
             colors: Array.from(colors).sort((a, b) => a.name.localeCompare(b.name)),
             variantIDs: variantIDs,
+            category: this.getCategory(sync.sync_product),
         };
         return product;
+    }
+    
+    private static getCategory(sync: any): string | null {
+        const name: string = sync.name.toLowerCase();
+        if (name.includes('hoodie') || name.includes('sweatshirt'))
+            return 'Sweatshirts/Hoodies';
+        if (name.includes('t-shirt'))
+            return 'T-Shirts';
+        return null;
     }
 }
