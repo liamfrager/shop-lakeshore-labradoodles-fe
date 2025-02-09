@@ -27,24 +27,27 @@ export default function ProductColorSelection(props: ProductColorSelectionProps)
 
 
     return (
-        <div className="color-selector">
-            {colors && colors.map(color => (
-                <div key={color.name} className={`color-option ${selectedColor === color && 'selected'}`}>
-                    <input
-                        type="radio"
-                        name="color"
-                        id={color.name}
-                        value={color.name}
-                        onChange={() => handleColorChange(color)}
-                    />
-                    <label
-                        htmlFor={color.name}
-                        title={color.name}
-                        className="shadow"
-                        style={{ backgroundColor: color.code }}
-                    ></label>
-                </div>
-            ))}
-        </div>
+        <>
+            <span>{selectedColor?.name}</span>
+            <div className="color-selector">
+                {colors && colors.map(color => (
+                    <div key={color.name} className={`color-option ${selectedColor === color && 'selected'}`}>
+                        <input
+                            type="radio"
+                            name="color"
+                            id={color.name}
+                            value={color.name}
+                            onChange={() => handleColorChange(color)}
+                        />
+                        <label
+                            htmlFor={color.name}
+                            title={color.name}
+                            className="shadow"
+                            style={{ backgroundColor: color.code }}
+                        ></label>
+                    </div>
+                ))}
+            </div>
+        </>
     );
 };
