@@ -2,19 +2,24 @@ import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 import './Header.css';
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShirt, faShoppingCart, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import CartService from "../../services/CartService";
 
 export default function Header() {
     const location = useLocation();
 
     const [selectedMenuItem, setSelectedMenuItem] = useState<string>();
+    const [cartCount, setCartCount] = useState<number>(0);
 
     useEffect(() => {
         setSelectedMenuItem(location.pathname.split('/')[1]);
+        setCartCount(CartService.getCartCount());
     }, [location]);
 
     const menuItems: MenuItem[] = [
-        { name: 'Products', route: 'products', icon: '' },
-        { name: 'Cart', route: 'cart', icon: '' },
+        { name: 'Products', route: 'products', icon: faShirt },
+        { name: 'Cart', route: 'cart', icon: faShoppingCart },
     ]
 
     return (
@@ -24,12 +29,16 @@ export default function Header() {
             </Link>
             <ul>
                 {menuItems.map(menuItem => (
-                    <Link to={`/${menuItem.route}`}
-                        key={menuItem.name}
-                        className={selectedMenuItem === menuItem.route ? 'selected' : ''}
-                    >
-                        <li>{menuItem.name}</li>
-                    </Link>
+                    <li>
+                        <Link to={`/${menuItem.route}`}
+                            key={menuItem.name}
+                            className={selectedMenuItem === menuItem.route ? 'selected' : ''}
+                        >
+                            <FontAwesomeIcon icon={menuItem.icon} />
+                            {menuItem.name}
+                            {menuItem.name === 'Cart' && <span className="cart-count">{` (${cartCount})`}</span>}
+                        </Link>
+                    </li>
                 ))}
             </ul>
         </nav>
@@ -39,5 +48,5 @@ export default function Header() {
 interface MenuItem {
     name: string,
     route: string,
-    icon: string,
+    icon: IconDefinition,
 }

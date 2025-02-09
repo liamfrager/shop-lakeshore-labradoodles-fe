@@ -12,8 +12,8 @@ nav {
     ul {
         display: flex;
         flex-direction: row;
-        a {
-            font-size: 1.5em;
+        li, a {
+            font-size: 1.2em;
             list-style: none;
             margin-right: 1em;
             text-decoration: none;
@@ -23,6 +23,9 @@ nav {
             }
             &.selected:hover, &:hover {
                 color: var(--tan);
+            }
+            & > * {
+                margin-right: .2em;
             }
         }
     }

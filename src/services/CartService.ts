@@ -56,4 +56,9 @@ export default class CartService {
         }
         return cart;
     }
+
+    public static getCartCount(): number {
+        const cartData = this.getCartData();
+        return Object.values(cartData.items).length;
+    }
 }
