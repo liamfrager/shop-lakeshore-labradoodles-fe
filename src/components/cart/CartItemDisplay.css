@@ -1,0 +1,18 @@
+.cart-item img {
+    max-height: 5em;
+    aspect-ratio: 1 / 1;
+}
+
+.item-details {
+    margin-left: .5em;
+    justify-content: center;
+    line-height: 1.5em;
+}
+
+.item-price {
+    align-content: center;
+}
+
+.quantity-select {
+    scale: .8;
+}

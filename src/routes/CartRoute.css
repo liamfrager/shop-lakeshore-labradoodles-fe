@@ -1,0 +1,20 @@
+ul.cart {
+    padding: 0;
+    li.cart-item, li.order-total {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--dim);
+        padding: .5em;
+    }
+
+    li.order-total {
+        border-bottom: none;
+        & > * {
+            & > * {
+                margin-bottom: .5em;
+            }
+            text-align: right;
+        }
+    }
+}

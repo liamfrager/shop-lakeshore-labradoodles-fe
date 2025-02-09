@@ -4,6 +4,7 @@ import CartService from "../services/CartService";
 import CartItemDisplay from "../components/cart/CartItemDisplay";
 import OrderService from "../services/OrderService";
 import Loader from "../components/ui/Loader";
+import './CartRoute.css';
 
 export default function CartRoute() {
     const [cart, setCart] = useState<Cart>();
@@ -46,11 +47,21 @@ export default function CartRoute() {
             <h1>Cart</h1>
             {cart ? (
                 <>
-                    {Object.entries(cart.items).map(([id, item]) => <CartItemDisplay key={id} item={item} onQuantityChange={handleQuantityChange} />)}
-                    <span>Free Shipping</span><span>$0.00</span>
-                    <strong>Order Total</strong>
-                    <span>{`$${totalPrice}`}</span>
-                    <button onClick={handleCheckout}>Checkout</button>
+                    <ul className='cart'>
+                        {Object.entries(cart.items).map(([id, item]) => <CartItemDisplay key={id} item={item} onQuantityChange={handleQuantityChange} />)}
+                        <li className='cart-item'>
+                            <span>Free Shipping</span>
+                            <span>$0.00</span>
+                        </li>
+                        <li className='order-total'>
+                            <div></div>
+                            <div className='col'>
+                                <strong>Order Total</strong>
+                                <span>{`$${totalPrice.toFixed(2)}`}</span>
+                                <button onClick={handleCheckout}>Checkout</button>
+                            </div>
+                        </li>
+                    </ul>
                 </>
             ) : (
                 <Loader />
