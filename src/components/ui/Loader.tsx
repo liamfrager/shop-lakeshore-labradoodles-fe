@@ -4,7 +4,7 @@ export default function Loader() {
     return (
         <div className='loader-container'>
             <div className='loader'></div>
-            <span className='loader-text'>Loading...</span>
+            <h3 className='loader-text'>Loading...</h3>
         </div>
     )
 }

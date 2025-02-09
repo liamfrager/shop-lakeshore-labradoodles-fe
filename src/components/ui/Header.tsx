@@ -27,15 +27,13 @@ export default function Header() {
             <Link to="/">
                 <Logo />
             </Link>
-            <ul>
+            <ul className='row'>
                 {menuItems.map(menuItem => (
                     <li key={menuItem.name}>
-                        <Link to={`/${menuItem.route}`}
-                            className={selectedMenuItem === menuItem.route ? 'selected' : ''}
-                        >
+                        <Link to={`/${menuItem.route}`} className={`row ${selectedMenuItem === menuItem.route && 'selected'}`}>
                             <FontAwesomeIcon icon={menuItem.icon} />
                             {menuItem.name}
-                            {menuItem.name === 'Cart' && <span className="cart-count">{` (${cartCount})`}</span>}
+                            {menuItem.name === 'Cart' && <span className="cart-count">{`(${cartCount})`}</span>}
                         </Link>
                     </li>
                 ))}

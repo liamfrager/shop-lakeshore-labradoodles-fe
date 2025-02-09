@@ -9,14 +9,19 @@ nav {
     z-index: 1;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    ul {
-        display: flex;
-        flex-direction: row;
-        li, a {
-            font-size: 1.2em;
-            list-style: none;
-            margin-right: 1em;
+    ul li {
+        font-size: 1.2em;
+        list-style: none;
+        margin-right: 1em;
+        padding-right: 1em;
+        border-right: 1px solid var(--dim);
+        &:last-of-type {
+            border-right: none;
+        }
+        a {
             text-decoration: none;
+            flex-wrap: nowrap;
+            align-items: center;
             color: var(--brown);
             &.selected {
                 color: var(--blue);
@@ -28,5 +33,9 @@ nav {
                 margin-right: .2em;
             }
         }
+    }
+
+    .cart-count {
+        margin-left: .2em;
     }
 }
