@@ -4,10 +4,11 @@ import ShopService from "../services/ShopService";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/product-display/ProductCard";
 import DynamicDisplay from "../components/ui/DynamicDisplay";
+import Loader from "../components/ui/Loader";
 
 export default function HomeRoute() {
 
-    let [products, setProducts] = useState<Product[]>([]);
+    let [products, setProducts] = useState<Product[]>();
 
 
     useEffect(() => {
@@ -17,12 +18,18 @@ export default function HomeRoute() {
 
     return (
         <>
-            <h1>Lakeshore Labradoodles Merch Shop!</h1>
-            {products.length > 0 &&
-                <DynamicDisplay>
-                    {products.map(product => <ProductCard key={product.id} product={product} />)}
-                </DynamicDisplay>
-            }
+            <h1>Products</h1>
+            {products ? (
+                products.length > 0 ? (
+                    <DynamicDisplay>
+                        {products.map(product => <ProductCard key={product.id} product={product} />)}
+                    </DynamicDisplay>
+                ) : (
+                    <span>Could not load any items...</span>
+                )
+            ) : (
+                < Loader />
+            )}
         </>
-    );
+    )
 }

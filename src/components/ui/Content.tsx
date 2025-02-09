@@ -7,6 +7,8 @@ export default function Content(props: { children: React.ReactElement }) {
         }}
         >
             <div style={{
+                display: 'flex',
+                flexDirection: 'column',
                 marginInline: '1em',
                 flexGrow: 0,
                 flexShrink: 1,

@@ -3,6 +3,7 @@ import { Cart } from "../types";
 import CartService from "../services/CartService";
 import CartItemDisplay from "../components/cart/CartItemDisplay";
 import OrderService from "../services/OrderService";
+import Loader from "../components/ui/Loader";
 
 export default function CartRoute() {
     const [cart, setCart] = useState<Cart>();
@@ -52,9 +53,7 @@ export default function CartRoute() {
                     <button onClick={handleCheckout}>Checkout</button>
                 </>
             ) : (
-                <>
-                    <p>Loading...</p>
-                </>
+                <Loader />
             )
             }
         </>
