@@ -37,6 +37,19 @@ export default function CartRoute() {
         });
     }
 
+    const handleRemoveItem = (itemID: number) => {
+        CartService.removeItem(itemID);
+        setCart(prevCart => {
+            if (!prevCart) return prevCart;
+            const newItems = { ...prevCart.items };
+            delete newItems[itemID];
+            return {
+                ...prevCart,
+                items: newItems
+            };
+        });
+    }
+
     const handleCheckout = async () => {
         const stripeCheckoutURL: string = await OrderService.checkoutCart();
         window.location.href = stripeCheckoutURL;
@@ -48,7 +61,14 @@ export default function CartRoute() {
             {cart ? (
                 <>
                     <ul className='cart'>
-                        {Object.entries(cart.items).map(([id, item]) => <CartItemDisplay key={id} item={item} onQuantityChange={handleQuantityChange} />)}
+                        {Object.entries(cart.items).map(([id, item]) => (
+                            <CartItemDisplay
+                                key={id}
+                                item={item}
+                                onQuantityChange={handleQuantityChange}
+                                onRemoveItem={handleRemoveItem}
+                            />
+                        ))}
                         <li className='cart-item'>
                             <span>Free Shipping</span>
                             <span>$0.00</span>

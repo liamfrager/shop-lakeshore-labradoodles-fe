@@ -29,9 +29,8 @@ export default function Header() {
             </Link>
             <ul>
                 {menuItems.map(menuItem => (
-                    <li>
+                    <li key={menuItem.name}>
                         <Link to={`/${menuItem.route}`}
-                            key={menuItem.name}
                             className={selectedMenuItem === menuItem.route ? 'selected' : ''}
                         >
                             <FontAwesomeIcon icon={menuItem.icon} />

@@ -16,3 +16,16 @@
 .quantity-select {
     scale: .8;
 }
+
+.remove {
+    visibility: hidden;
+}
+
+.cart-item:hover .remove {
+    visibility: visible;
+    color: var(--light-brown);
+    cursor: pointer;
+    &:hover {
+        color: var(--red);
+    }
+}

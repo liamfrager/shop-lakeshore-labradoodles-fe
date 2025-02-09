@@ -1,9 +1,12 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CartItem } from "../../types";
 import './CartItemDisplay.css';
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 interface CartItemDisplayProps {
     item: CartItem,
     onQuantityChange: (itemID: number, newQuantity: number) => void,
+    onRemoveItem: (itemID: number) => void,
 }
 
 export default function CartItemDisplay(props: CartItemDisplayProps) {
@@ -26,6 +29,11 @@ export default function CartItemDisplay(props: CartItemDisplayProps) {
                                 </option>
                             ))}
                         </select>
+                        <FontAwesomeIcon
+                            className="remove"
+                            icon={faTrashCan}
+                            onClick={() => props.onRemoveItem(props.item.id)}
+                        />
                     </span>
                 </div>
             </div>
