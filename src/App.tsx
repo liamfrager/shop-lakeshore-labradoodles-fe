@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CartRoute from './routes/CartRoute';
 import ProductRoute from './routes/ProductRoute';
-import HomeRoute from './routes/HomeRoute';
+import ProductsRoute from './routes/ProductsRoute';
 import OrderSuccessRoute from './routes/OrderSuccessRoute';
 import Header from './components/ui/Header';
 import Footer from './components/ui/Footer';
@@ -16,8 +16,8 @@ const App: React.FC = () => {
                     <Header />
                     <Content>
                         <Routes>
-                            <Route path='' element={<HomeRoute />} />
-                            <Route path='product/:id' element={<ProductRoute />} />
+                            <Route path='/products' element={<ProductsRoute />} />
+                            <Route path='products/:id' element={<ProductRoute />} />
                             <Route path='cart' element={<CartRoute />} />
                             <Route path='success' element={<OrderSuccessRoute />} />
 

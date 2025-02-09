@@ -10,7 +10,7 @@ export default function ProductCard(props: ProductCardProps) {
     const product = props.product;
 
     return (
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/products/${product.id}`}>
             <div className="card shadow">
                 <img src={product.image} alt={product.name} />
                 <div className="caption">

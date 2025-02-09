@@ -7,7 +7,7 @@ import DynamicDisplay from "../components/ui/DynamicDisplay";
 import Loader from "../components/ui/Loader";
 import ProductCategories from "../components/product-display/ProductCategories";
 
-export default function HomeRoute() {
+export default function ProductsRoute() {
 
     const [allProducts, setAllProducts] = useState<Product[]>();
     const [displayedProducts, setDisplayedProducts] = useState<Product[]>();

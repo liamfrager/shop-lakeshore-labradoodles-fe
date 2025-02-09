@@ -13,12 +13,16 @@ nav {
         display: flex;
         flex-direction: row;
         a {
+            font-size: 1.5em;
             list-style: none;
             margin-right: 1em;
             text-decoration: none;
-            color: var(--dark);
-            &:hover {
-                color: var(--black);
+            color: var(--brown);
+            &.selected {
+                color: var(--blue);
+            }
+            &.selected:hover, &:hover {
+                color: var(--tan);
             }
         }
     }
