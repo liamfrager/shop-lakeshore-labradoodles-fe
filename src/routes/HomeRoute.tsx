@@ -20,13 +20,15 @@ export default function HomeRoute() {
         <>
             <h1>Products</h1>
             {products ? (
-                products.length > 0 ? (
-                    <DynamicDisplay>
-                        {products.map(product => <ProductCard key={product.id} product={product} />)}
-                    </DynamicDisplay>
-                ) : (
-                    <span>Could not load any items...</span>
-                )
+                <>
+                    {products.length > 0 ? (
+                        <DynamicDisplay>
+                            {products.map(product => <ProductCard key={product.id} product={product} />)}
+                        </DynamicDisplay>
+                    ) : (
+                        <span>Could not load any items...</span>
+                    )}
+                </>
             ) : (
                 < Loader />
             )}

@@ -1,15 +1,13 @@
 .product-form {
-    display: flex;
-    flex-direction: column;
+    max-height: fit-content;
     & > * {
         margin: .5em 0;
     }
 }
 
 .dynamic-two-columns {
-    display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
+    gap: 1em;
 
     & > :first-child {
         flex-grow: 5;

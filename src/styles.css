@@ -23,9 +23,17 @@ body, p {
     margin: 0;
 }
 
+body {
+    background-color: var(--cream);
+}
+
 * {
     font-family: 'Lato', sans-serif;
     box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--brown);
 }
 
 p {
@@ -36,10 +44,16 @@ a {
     color: var(--blue);
 }
 /* CLASSES */
-.shadow, button {
+.bubble, button {
     box-shadow:
         1px 1px 5px rgba(0, 0, 0, 0.2),
         3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bubble {
+    background-color: white;
+    border-radius: 1em;
+    padding: 1em;
 }
 
 /* FORM ELEMENTS */

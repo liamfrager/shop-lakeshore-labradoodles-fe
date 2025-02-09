@@ -16,6 +16,7 @@ export default function ProductImageDisplay(props: ProductImageDisplayProps) {
         <div>
             {props.images.length > 1 && <span onClick={() => setI(i - 1)}>{"<"}</span>}
             <img
+                className="bubble"
                 style={{ maxWidth: '100%' }}
                 src={props.images[i]}
                 alt="product preview"

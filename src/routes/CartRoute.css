@@ -1,5 +1,7 @@
 ul.cart {
-    padding: 0;
+    background-color: var(--white);
+    padding: .5em 1em 0 1em;
+    border-radius: 1em;
     li.cart-item, li.order-total {
         display: flex;
         flex-direction: row;
