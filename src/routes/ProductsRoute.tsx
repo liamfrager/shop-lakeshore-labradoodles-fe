@@ -9,8 +9,8 @@ import ProductCategories from "../components/product-display/ProductCategories";
 
 export default function ProductsRoute() {
 
-    const [allProducts, setAllProducts] = useState<Product[]>();
-    const [displayedProducts, setDisplayedProducts] = useState<Product[]>();
+    const [allProducts, setAllProducts] = useState<Product[] | undefined | null>(undefined);
+    const [displayedProducts, setDisplayedProducts] = useState<Product[] | undefined | null>(undefined);
     const [selectedCategory, setSelectedCategory] = useState<string>('All Products');
     const [allCategories, setAllCategories] = useState<string[]>([]);
 
@@ -19,19 +19,21 @@ export default function ProductsRoute() {
         ShopService.getAllProducts().then(data => {
             setAllProducts(data);
             setDisplayedProducts(data);
-            // Get categories
-            let existsOthers = false;
-            const categories = new Set<string>();
-            data.forEach(product => {
-                if (product.category === null) {
-                    existsOthers = true;
-                    return;
-                }
-                categories.add(product.category);
-            });
-            const categoriesArray = Array.from(categories);
-            if (existsOthers) categoriesArray.push('Other');
-            setAllCategories(categoriesArray);
+            if (data) {
+                // Get categories
+                let existsOthers = false;
+                const categories = new Set<string>();
+                data.forEach(product => {
+                    if (product.category === null) {
+                        existsOthers = true;
+                        return;
+                    }
+                    categories.add(product.category);
+                });
+                const categoriesArray = Array.from(categories);
+                if (existsOthers) categoriesArray.push('Other');
+                setAllCategories(categoriesArray);
+            }
         });
     }, []);
 
@@ -61,7 +63,7 @@ export default function ProductsRoute() {
                     )}
                 </>
             ) : (
-                < Loader />
+                < Loader loading={displayedProducts} />
             )}
         </>
     )

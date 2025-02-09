@@ -14,7 +14,7 @@ export default function ProductRoute() {
     let params = useParams();
     const navigate = useNavigate();
 
-    const [product, setProduct] = useState<Product>();
+    const [product, setProduct] = useState<Product | null | undefined>(undefined);
     const [color, setColor] = useState<Color>();
     const [size, setSize] = useState<string>();
     const [price, setPrice] = useState<string>();
@@ -22,8 +22,10 @@ export default function ProductRoute() {
     useEffect(() => {
         ShopService.getProduct(Number(params.id)).then(data => {
             setProduct(data);
-            setColor(data.colors.values().next().value);
-            setSize(data.sizes[0]);
+            if (data) {
+                setColor(data.colors.values().next().value);
+                setSize(data.sizes[0]);
+            }
         });
     }, [params.id]);
 

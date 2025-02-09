@@ -7,6 +7,7 @@ import OrderSuccessRoute from './routes/OrderSuccessRoute';
 import Header from './components/ui/Header';
 import Footer from './components/ui/Footer';
 import Content from './components/ui/Content';
+import ErrorRoute from './routes/ErrorRoute';
 
 const App: React.FC = () => {
     return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
                             <Route path='products/:id' element={<ProductRoute />} />
                             <Route path='cart' element={<CartRoute />} />
                             <Route path='success' element={<OrderSuccessRoute />} />
+                            <Route path='error' element={<ErrorRoute />} />
 
                             {/* <Route path='webhooks' element={<WebhookHandler />}/> */}
                         </Routes>

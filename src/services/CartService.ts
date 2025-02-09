@@ -6,7 +6,7 @@ export default class CartService {
     private static CART_KEY = 'cart';
 
     // Retrieves the cart from local storage
-    public static getCartData(): CartData {
+    private static getCartData(): CartData {
         const cart = localStorage.getItem(this.CART_KEY);
         return cart ? JSON.parse(cart) : { items: {} };
     }
@@ -35,26 +35,30 @@ export default class CartService {
         localStorage.removeItem(this.CART_KEY);
     }
 
-    public static async getCart(): Promise<Cart> {
-        const cartData = this.getCartData();
-        const cart: Cart = {
-            items: await (async () => {
-                const items: { [key: number]: CartItem } = {};
-                for (const [id, quantity] of Object.entries(cartData.items)) {
-                    const variant = await PrintfulService.getVariant(Number(id));
-                    const cartItem: CartItem = {
-                        id: Number(id),
-                        name: variant.name,
-                        price: Number(variant.retail_price),
-                        img: variant.files[variant.files.length - 1].thumbnail_url,
-                        quantity: Number(quantity),
-                    };
-                    items[Number(id)] = cartItem;
-                }
-                return items;
-            })(),
+    public static async getCart(): Promise<Cart | null> {
+        try {
+            const cartData = this.getCartData();
+            const cart: Cart = {
+                items: await (async () => {
+                    const items: { [key: number]: CartItem } = {};
+                    for (const [id, quantity] of Object.entries(cartData.items)) {
+                        const variant = await PrintfulService.getVariant(Number(id));
+                        const cartItem: CartItem = {
+                            id: Number(id),
+                            name: variant.name,
+                            price: Number(variant.retail_price),
+                            img: variant.files[variant.files.length - 1].thumbnail_url,
+                            quantity: Number(quantity),
+                        };
+                        items[Number(id)] = cartItem;
+                    }
+                    return items;
+                })(),
+            }
+            return cart;
+        } catch (error) {
+            return null;
         }
-        return cart;
     }
 
     public static getCartCount(): number {

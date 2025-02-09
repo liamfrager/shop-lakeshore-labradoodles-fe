@@ -1,0 +1,19 @@
+
+div.loading-error {
+    align-items: center;
+    background-color: var(--red);
+    flex-wrap: wrap;
+    * {
+        color: var(--cream);
+    }
+    .error-icon {
+        font-size: 5em;
+        text-justify: center;
+        padding-inline: .3em;
+        flex: 1 1 1ch;
+    }
+    .error-message {
+        margin-left: 1em;
+        flex: 10 10 15ch;
+    }
+}

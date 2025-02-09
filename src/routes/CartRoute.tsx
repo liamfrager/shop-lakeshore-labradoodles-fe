@@ -5,9 +5,12 @@ import CartItemDisplay from "../components/cart/CartItemDisplay";
 import OrderService from "../services/OrderService";
 import Loader from "../components/ui/Loader";
 import './CartRoute.css';
+import { useNavigate } from "react-router-dom";
 
 export default function CartRoute() {
-    const [cart, setCart] = useState<Cart>();
+    const navigate = useNavigate();
+
+    const [cart, setCart] = useState<Cart | null | undefined>(undefined);
     const [totalPrice, setTotalPrice] = useState<number>(0);
 
     useEffect(() => {
@@ -51,8 +54,12 @@ export default function CartRoute() {
     }
 
     const handleCheckout = async () => {
-        const stripeCheckoutURL: string = await OrderService.checkoutCart();
-        window.location.href = stripeCheckoutURL;
+        try {
+            const stripeCheckoutURL: string = await OrderService.checkoutCart();
+            window.location.href = stripeCheckoutURL;
+        } catch (error) {
+            navigate(`/error?messages=Could not checkout.&messages=Please try again later.`);
+        }
     }
 
     return (
@@ -84,7 +91,7 @@ export default function CartRoute() {
                     </ul>
                 </>
             ) : (
-                <Loader />
+                <Loader loading={cart} />
             )
             }
         </>

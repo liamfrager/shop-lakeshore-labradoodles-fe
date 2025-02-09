@@ -35,10 +35,12 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--brown);
+    margin: 1em 0;
 }
 
 p {
     font-family: 'Merriweather', serif;
+    color: var(--brown);
 }
 
 a {
