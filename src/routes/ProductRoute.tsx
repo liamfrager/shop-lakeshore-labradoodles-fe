@@ -26,6 +26,8 @@ export default function ProductRoute() {
                 setColor(data.colors.values().next().value);
                 setSize(data.sizes[0]);
             }
+        }).catch(error => {
+            navigate(`/error?title=${error.status}: ${error.statusText}&messages=${error.data.message}`);
         });
     }, [params.id]);
 

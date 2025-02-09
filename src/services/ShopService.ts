@@ -1,3 +1,4 @@
+import axios, { AxiosError } from "axios";
 import { Color, Product, VariantIDMap } from "../types";
 import PrintfulService from "./PrintfulService";
 
@@ -84,7 +85,10 @@ export default class ShopService {
                 category: this.getCategory(sync.sync_product),
             };
             return product;
-        } catch (error) {
+        } catch (error: any) {
+            if (error.response && error.response.status === 404) {
+                throw error.response;
+            }
             return null;
         }
     }
