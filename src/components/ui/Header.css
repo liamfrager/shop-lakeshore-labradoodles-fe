@@ -1,41 +1,112 @@
 nav {
     background-color: var(--light);
     padding: 1em;
-    display: flex;
-    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 1;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
 
-    ul li {
+nav ul {
+    display: flex;
+    padding: 1em;
+    li {
         font-size: 1.2em;
         list-style: none;
-        margin-right: 1em;
-        padding-right: 1em;
-        border-right: 1px solid var(--dim);
         &:last-of-type {
-            border-right: none;
+            border: none;
+            padding: 0;
+            margin: 0;
         }
         a {
             text-decoration: none;
             flex-wrap: nowrap;
             align-items: center;
             color: var(--brown);
-            &.selected {
-                color: var(--blue);
-            }
-            &.selected:hover, &:hover {
-                color: var(--tan);
-            }
             & > * {
                 margin-right: .2em;
             }
         }
     }
+}
 
+.selected {
+    color: var(--blue);
     .cart-count {
-        margin-left: .2em;
+        background-color: var(--blue);
+    }
+}
+.selected:hover, nav ul li a:hover {
+    color: var(--tan);
+    .cart-count {
+        background-color: var(--tan);
+    }
+}
+
+.cart-count {
+    margin-left: .5em;
+    border-radius: 50%;
+    width: fit-content;
+    min-width: 1.4em;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .1em;
+    font-size: .8em;
+    color: var(--white);
+    background-color: var(--brown);
+}
+
+svg.menu-button {
+    font-size: 2em;
+    cursor: pointer;
+    pointer-events: bounding-box;
+    padding: .5em;
+    border-radius: .5em;
+    user-select: none;
+}
+
+
+@media (max-width: 600px) { /* Mobile */
+    nav {
+        overflow: visible;
+    }
+    nav ul {
+        flex-direction: column;
+        position: absolute;
+        right: 1em;
+        background-color: pink;
+        li {
+            border-bottom: 1px solid var(--dim);
+            margin-bottom: .8em;
+            padding-bottom: .8em;
+        }
+    }
+
+    .hide-menu {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+}
+
+@media (min-width: 601px) { /* Desktop */
+    nav ul {
+        flex-direction: row;
+        display: auto;
+        li {
+            border-right: 1px solid var(--dim);
+            margin-right: 1em;
+            padding-right: 1em;
+        }
+    }
+    .menu-button {
+        display: none;
     }
 }

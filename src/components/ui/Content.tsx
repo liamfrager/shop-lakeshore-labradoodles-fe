@@ -9,10 +9,8 @@ export default function Content(props: { children: React.ReactElement }) {
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
-                marginInline: '5em',
-                flexGrow: 0,
-                flexShrink: 1,
-                flexBasis: '105em',
+                marginInline: '5vw',
+                flex: '0 1 105em',
                 paddingBottom: '2em',
             }}
             >
