@@ -4,7 +4,7 @@ export type Product = {
     description: string,
     image: string,
     previewImages: { [color: string]: string[] },
-    sizePrices: { [size: string]: string},
+    sizePrices: { [size: string]: number},
     colors: Color[],
     sizes: string[],
     variantIDs: VariantIDMap,

@@ -17,7 +17,7 @@ export default function ProductRoute() {
     const [product, setProduct] = useState<Product | null | undefined>(undefined);
     const [color, setColor] = useState<Color>();
     const [size, setSize] = useState<string>();
-    const [price, setPrice] = useState<string>();
+    const [price, setPrice] = useState<number>();
 
     useEffect(() => {
         ShopService.getProduct(Number(params.id)).then(data => {
@@ -32,7 +32,7 @@ export default function ProductRoute() {
     }, [params.id]);
 
     useEffect(() => {
-        setPrice(product && size ? product.sizePrices[size] : '0.00');
+        setPrice(product && size ? product.sizePrices[size] : 0);
     }, [product, size]);
 
     const handleAddToCart = (e: React.FormEvent) => {
@@ -50,9 +50,9 @@ export default function ProductRoute() {
                     {color && <ProductImageDisplay images={product.previewImages[color.name]} color={color} />}
 
                     <form onSubmit={handleAddToCart} className="product-form col bubble">
-                        <h1>{`$${price}`}</h1>
+                        <h1>{`$${price!.toFixed(2)}`}</h1>
                         <ProductColorSelection colors={product.colors} onChange={setColor} />
-                        <ProductSizeSelection sizes={product.sizes} onChange={setSize} />
+                        <ProductSizeSelection sizes={product.sizes} sizePrices={product.sizePrices} onChange={setSize} />
                         <button type="submit">Add to Cart</button>
                     </form>
                 </div>

@@ -34,7 +34,7 @@ export default class ShopService {
                 });
 
             const colors: Set<Color> = new Set();
-            const sizePrices: { [size: string]: string } = {};
+            const sizePrices: { [size: string]: number } = {};
             const previewImages: { [color: string]: string[] } = {};
             const variantIDs: VariantIDMap = {};
 
@@ -50,7 +50,7 @@ export default class ShopService {
                 }
 
                 // Get product variant prices
-                sizePrices[variant.size] = variant.retail_price;
+                sizePrices[variant.size] = Number(variant.retail_price);
 
                 // Get preview images
                 if (!previewImages[variant.color]) {
