@@ -11,8 +11,9 @@
     img {
         max-height: 4em;
         aspect-ratio: 1 / 1;
+        object-fit: contain;
         border-radius: .3em;
-        padding: .1em;
+        padding: 0;
         cursor: pointer;
     }
 }
@@ -25,6 +26,8 @@
     justify-content: center;
     border-top: 1px solid var(--dim);
     img {
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
         max-width: 100%;
     }
 }
@@ -36,13 +39,15 @@
     pointer-events: bounding-box;
     cursor: pointer;
     color: var(--light-brown);
+    opacity: .5;
+    font-size: 2em;
     :hover {
         color: var(--tan);
     }
     &:first-of-type {
-        left: .5em;
+        left: 0;
     }
     &:last-of-type {
-        right: .5em;
+        right: 0;
     }
 }

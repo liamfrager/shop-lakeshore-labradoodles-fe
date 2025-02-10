@@ -47,7 +47,7 @@ export default function ProductRoute() {
             <>
                 <h1>{product.name}</h1>
                 <div className="dynamic-two-columns row">
-                    {color && <ProductImageDisplay images={product.previewImages[color.name]} />}
+                    {color && <ProductImageDisplay images={product.previewImages[color.name]} color={color} />}
 
                     <form onSubmit={handleAddToCart} className="product-form col bubble">
                         <h1>{`$${price}`}</h1>
