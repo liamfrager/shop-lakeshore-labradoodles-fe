@@ -43,7 +43,7 @@ export default function ProductColorSelection(props: ProductColorSelectionProps)
                             htmlFor={color.name}
                             title={color.name}
                             className="shadow"
-                            style={{ backgroundColor: color.code }}
+                            style={{ border: `.5em solid ${color.code}`, backgroundColor: selectedColor === color ? 'transparent' : color.code }}
                         ></label>
                     </div>
                 ))}

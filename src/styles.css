@@ -46,15 +46,20 @@ p {
 a {
     color: var(--blue);
 }
+
+ul {
+    margin: 0;
+}
+
 /* CLASSES */
-.bubble, button {
+.bubble, .shadow, button {
     box-shadow:
         1px 1px 5px rgba(0, 0, 0, 0.2),
         3px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .bubble {
-    background-color: white;
+    background-color: var(--white);
     border-radius: 1em;
     padding: 1em;
 }

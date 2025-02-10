@@ -1,7 +1,7 @@
 .color-selector {
     display: flex;
     flex-wrap: wrap;
-    gap: .1em;
+    gap: .4em;
     width: 100%;
 }
 
@@ -15,15 +15,14 @@
 
     label {
         display: inline-block;
-        width: 20px;
-        height: 20px;
-        margin: 5px;
+        width: 1.5em;
+        height: 1.5em;
         cursor: pointer;
-        border-radius: 3px;
-        border: 1px solid var(--black);
+        border-radius: 50%;
+        padding: 0;
     }
 
-    &.selected {
+    &.selected label {
         scale: 110%;
     }
 }
