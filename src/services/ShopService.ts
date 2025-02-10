@@ -55,12 +55,12 @@ export default class ShopService {
                 // Get preview images
                 if (!previewImages[variant.color]) {
                     variant.files.forEach((file: any) => {
-                        if (file.filename.endsWith('.jpg')) {
+                        // if (file.filename.endsWith('.jpg')) {
                             if (!previewImages[variant.color]) {
                                 previewImages[variant.color] = [];
                             }
                             previewImages[variant.color].push(file.preview_url);
-                        }
+                        // }
                     });
                 }
 

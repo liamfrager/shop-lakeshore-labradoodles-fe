@@ -1,0 +1,48 @@
+.images-display {
+    width: 0;
+}
+
+.thumbnails {
+    gap: .5em;
+    margin: -1em -1em 0 -1em;
+    padding: 1em;
+    overflow-x: auto;
+    width: auto;
+    img {
+        max-height: 4em;
+        aspect-ratio: 1 / 1;
+        border-radius: .3em;
+        padding: .1em;
+        cursor: pointer;
+    }
+}
+
+.product-image-display {
+    padding-top: 1em;
+    position: relative;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid var(--dim);
+    img {
+        max-width: 100%;
+    }
+}
+
+.image-cycle-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: bounding-box;
+    cursor: pointer;
+    color: var(--light-brown);
+    :hover {
+        color: var(--tan);
+    }
+    &:first-of-type {
+        left: .5em;
+    }
+    &:last-of-type {
+        right: .5em;
+    }
+}

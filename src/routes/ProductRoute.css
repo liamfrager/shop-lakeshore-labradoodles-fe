@@ -10,12 +10,10 @@
     gap: 1em;
 
     & > :first-child {
-        flex-grow: 5;
-        flex-basis: 25em;
+        flex: 5 1 25em;
     }
 
     & > :last-child {
-        flex-grow: 3;
-        flex-basis: 15em;
+        flex: 1 1 auto;
     }
 }

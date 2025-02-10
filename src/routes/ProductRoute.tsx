@@ -22,6 +22,7 @@ export default function ProductRoute() {
     useEffect(() => {
         ShopService.getProduct(Number(params.id)).then(data => {
             setProduct(data);
+            console.log(data);
             if (data) {
                 setColor(data.colors.values().next().value);
                 setSize(data.sizes[0]);
