@@ -8,6 +8,7 @@ import Header from './components/ui/Header';
 import Footer from './components/ui/Footer';
 import Content from './components/ui/Content';
 import ErrorRoute from './routes/ErrorRoute';
+import HomeRoute from './routes/HomeRoute';
 
 const App: React.FC = () => {
     return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
                     <Header />
                     <Content>
                         <Routes>
+                            <Route path='/' element={<HomeRoute />} />
                             <Route path='/products' element={<ProductsRoute />} />
                             <Route path='products/:id' element={<ProductRoute />} />
                             <Route path='cart' element={<CartRoute />} />
