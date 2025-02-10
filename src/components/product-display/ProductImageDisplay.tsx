@@ -21,12 +21,6 @@ export default function ProductImageDisplay(props: ProductImageDisplayProps) {
                 {props.images.map((image, index) => (
                     <img key={index} src={image} className="bubble" onClick={() => setI(index)} />
                 ))}
-                {props.images.map((image, index) => (
-                    <img key={index} src={image} className="bubble" onClick={() => setI(index)} />
-                ))}
-                {props.images.map((image, index) => (
-                    <img key={index} src={image} className="bubble" onClick={() => setI(index)} />
-                ))}
             </div>
             <div className="product-image-display">
                 {props.images.length > 1 && <FontAwesomeIcon className="image-cycle-button" icon={faChevronCircleLeft} onClick={() => setI((i + props.images.length - 1) % props.images.length)} />}
