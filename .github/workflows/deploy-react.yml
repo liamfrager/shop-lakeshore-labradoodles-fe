@@ -1,0 +1,29 @@
+name: Deploy React to SiteGround
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Deploy via SFTP
+        uses: easingthemes/ssh-deploy@v2
+        with:
+          server: ${{ secrets.SG_HOST }}
+          username: ${{ secrets.SG_USER }}
+          password: ${{ secrets.SG_PASS }}
+          local_path: "build/"
+          remote_path: "/home/shop.lakeshorelabradoodles.com/public_html/"
