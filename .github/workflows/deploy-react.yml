@@ -25,5 +25,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SG_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.SG_HOST }}
           REMOTE_USER: ${{ secrets.SG_USER }}
+          REMOTE_PORT: 18765
           TARGET: "/home/shop.lakeshorelabradoodles.com/public_html/"
           SOURCE: "build/"
