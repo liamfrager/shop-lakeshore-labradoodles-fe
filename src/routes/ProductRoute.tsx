@@ -29,7 +29,7 @@ export default function ProductRoute() {
         }).catch(error => {
             navigate(`/error?title=${error.status}: ${error.statusText}&messages=${error.data.message}`);
         });
-    }, [params.id]);
+    }, [params.id, navigate]);
 
     useEffect(() => {
         setPrice(product && size ? product.sizePrices[size] : 0);

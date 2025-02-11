@@ -21,7 +21,7 @@ export default function ProductImageDisplay(props: ProductImageDisplayProps) {
         <div className="bubble images-display col">
             <div className="thumbnails row">
                 {props.images.map((image, index) => (
-                    <img key={index} src={image} className="bubble" onClick={() => setI(index)} style={{ backgroundColor: props.color.code, opacity: i === index ? '.8' : '.5' }} />
+                    <img key={index} src={image} alt={`Thumbnail-${index}`} className="bubble" onClick={() => setI(index)} style={{ backgroundColor: props.color.code, opacity: i === index ? '.8' : '.5' }} />
                 ))}
             </div>
             <div className="product-image-display">

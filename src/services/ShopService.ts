@@ -1,4 +1,3 @@
-import axios, { AxiosError } from "axios";
 import { Color, Product, VariantIDMap } from "../types";
 import PrintfulService from "./PrintfulService";
 

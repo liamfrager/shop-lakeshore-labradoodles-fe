@@ -9,7 +9,7 @@ export default function ErrorRoute() {
 
     return (
         <>
-            <h1></h1>
+            <h1>Error</h1>
             <ErrorMessage errorTitle={title} errorMessages={messages} />
         </>
     )

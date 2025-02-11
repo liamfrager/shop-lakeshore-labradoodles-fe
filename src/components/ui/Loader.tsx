@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Loader.css';
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import ErrorMessage from './ErrorMessage';
 
 interface LoaderProps {

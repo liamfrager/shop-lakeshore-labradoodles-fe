@@ -24,7 +24,7 @@ export default function Header() {
         const handleClickOutside = (e: MouseEvent) => {
             const menu = menuRef.current;
             const target = (e.target as Element)
-            if (menu && !menu.contains(target) || target.closest('.menu-item')) {
+            if ((menu && !menu.contains(target)) || target.closest('.menu-item')) {
                 setShowDropdownMenu(false);
             }
         };

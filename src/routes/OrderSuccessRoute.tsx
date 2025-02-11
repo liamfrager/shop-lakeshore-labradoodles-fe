@@ -13,7 +13,7 @@ export default function OrderSuccessRoute() {
             localStorage.removeItem('checkoutInProgress');
             localStorage.removeItem('cart');
         }
-    }, []);
+    }, [navigate]);
 
     return (
         <>

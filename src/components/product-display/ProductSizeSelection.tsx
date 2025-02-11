@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { useState } from "react";
 
 interface ProductSizeSelectionProps {
     sizes: string[],

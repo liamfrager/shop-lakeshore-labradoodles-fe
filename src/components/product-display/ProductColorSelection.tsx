@@ -23,7 +23,7 @@ export default function ProductColorSelection(props: ProductColorSelectionProps)
         } else {
             setColors(props.colors)
         }
-    }, [colors]);
+    }, [colors, props.colors]);
 
 
     return (

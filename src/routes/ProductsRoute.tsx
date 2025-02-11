@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Product } from "../types";
 import ShopService from "../services/ShopService";
 import { useEffect, useState } from "react";
@@ -45,7 +44,7 @@ export default function ProductsRoute() {
         } else {
             setDisplayedProducts(allProducts?.filter(product => product.category === selectedCategory));
         }
-    }, [selectedCategory]);
+    }, [selectedCategory, allProducts]);
 
 
     return (
