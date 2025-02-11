@@ -53,7 +53,9 @@ export default function Header() {
                 <Logo />
             </Link>
             <div className='menu-container' ref={menuRef}>
-                <FontAwesomeIcon icon={faBars} className={`menu-button bubble ${showDropdownMenu ? 'selected' : ''}`} onClick={handleMenuToggle} />
+                <div className={`menu-button bubble ${showDropdownMenu ? 'selected' : ''}`} onClick={handleMenuToggle}>
+                    <FontAwesomeIcon icon={faBars} />
+                </div>
                 <ul className={`bubble ${showDropdownMenu ? '' : 'hide-menu'}`}>
                     {menuItems.map(menuItem => (
                         <li key={menuItem.name}>
