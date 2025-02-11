@@ -19,11 +19,11 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      - name: Deploy via SFTP
+      - name: Deploy via SSH
         uses: easingthemes/ssh-deploy@v2
         with:
-          server: ${{ secrets.SG_HOST }}
-          username: ${{ secrets.SG_USER }}
-          password: ${{ secrets.SG_PASS }}
-          local_path: "build/"
-          remote_path: "/home/shop.lakeshorelabradoodles.com/public_html/"
+          SSH_PRIVATE_KEY: ${{ secrets.SG_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.SG_HOST }}
+          REMOTE_USER: ${{ secrets.SG_USER }}
+          TARGET: "/home/shop.lakeshorelabradoodles.com/public_html/"
+          SOURCE: "build/"
