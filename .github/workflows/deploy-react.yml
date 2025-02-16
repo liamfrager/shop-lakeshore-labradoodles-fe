@@ -22,7 +22,7 @@ jobs:
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
-          echo -e "${{ $SG_SSH_KEY }}" > ~/.ssh/deploy_key
+          echo -e "${{ secrets.SG_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p 18765 ${{ secrets.SG_HOST }} >> ~/.ssh/known_hosts
 
