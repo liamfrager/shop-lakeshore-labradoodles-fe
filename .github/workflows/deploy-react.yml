@@ -10,6 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo -e "${{ secrets.SG_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p ${{ secrets.SG_PORT }} ${{ secrets.SG_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Test SSH Connection
+        run: |
+          ssh -v -i ~/.ssh/deploy_key -p ${{ secrets.SG_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SG_USER }}@${{ secrets.SG_HOST }} "echo 'SSH connection successful!' && ls -lah"
+      
       - name: Checkout Code
         uses: actions/checkout@v3
 
@@ -19,17 +30,6 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      - name: Set up SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo -e "${{ secrets.SG_SSH_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p 18765 ${{ secrets.SG_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Test SSH Connection
-        run: |
-          ssh -v -i ~/.ssh/deploy_key -p 18765 -o StrictHostKeyChecking=no ${{ secrets.SG_USER }}@${{ secrets.SG_HOST }} "echo 'SSH connection successful!' && ls -lah"
-
       - name: Deploy via SSH using Rsync
         run: |
-          rsync -avz --progress --exclude=".htaccess" -e "ssh -i ~/.ssh/deploy_key -p 18765 -o StrictHostKeyChecking=no" ./build/ ${{ secrets.SG_USER }}@${{ secrets.SG_HOST }}:www/shop.lakeshorelabradoodles.com/public_html/
+          rsync -avz --progress --exclude=".htaccess" -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.SG_PORT }} -o StrictHostKeyChecking=no" ./build/ ${{ secrets.SG_USER }}@${{ secrets.SG_HOST }}:www/shop.lakeshorelabradoodles.com/public_html/
