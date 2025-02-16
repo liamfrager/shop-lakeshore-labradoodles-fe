@@ -22,14 +22,14 @@ jobs:
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "$SG_SSH_KEY" > ~/.ssh/deploy_key
+          echo -e "${{ $SG_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p 18765 ${{ secrets.SG_HOST }} >> ~/.ssh/known_hosts
 
       - name: Test SSH Connection
         run: |
-          ssh -i ~/.ssh/deploy_key -p 18765 -o StrictHostKeyChecking=no ${{ secrets.SG_USER }}@${{ secrets.SG_HOST }} "echo 'SSH connection successful!'"
+          ssh -v -i ~/.ssh/deploy_key -p 18765 -o StrictHostKeyChecking=no ${{ secrets.SG_USER }}@${{ secrets.SG_HOST }} "echo 'SSH connection successful!' && ls -lah"
 
       - name: Deploy via SSH using Rsync
         run: |
-          rsync -avz -e "ssh -i ~/.ssh/deploy_key -p 18765 -o StrictHostKeyChecking=no" ./build/ ${{ secrets.SG_USER }}@${{ secrets.SG_HOST }}:/home/shop.lakeshorelabradoodles.com/public_html/
+          rsync -avz --progress --exclude=".htaccess" -e "ssh -i ~/.ssh/deploy_key -p 18765 -o StrictHostKeyChecking=no" ./build/ ${{ secrets.SG_USER }}@${{ secrets.SG_HOST }}:www/shop.lakeshorelabradoodles.com/public_html/
