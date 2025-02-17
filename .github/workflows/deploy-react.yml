@@ -1,4 +1,4 @@
-name: Deploy React to SiteGround
+name: Deploy to SiteGround
 
 on:
   push:
@@ -6,21 +6,19 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up SSH key
+      - name: Set up SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SG_SSH_PRIVATE_KEY }}
         run: |
           mkdir -p ~/.ssh
-          echo -e "${{ secrets.SG_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p ${{ secrets.SG_PORT }} ${{ secrets.SG_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Test SSH Connection
-        run: |
-          ssh -v -i ~/.ssh/deploy_key -p ${{ secrets.SG_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SG_USER }}@${{ secrets.SG_HOST }} "echo 'SSH connection successful!' && ls -lah"
-      
       - name: Checkout Code
         uses: actions/checkout@v3
 
@@ -32,4 +30,4 @@ jobs:
 
       - name: Deploy via SSH using Rsync
         run: |
-          rsync -avz --progress --exclude=".htaccess" -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.SG_PORT }} -o StrictHostKeyChecking=no" ./build/ ${{ secrets.SG_USER }}@${{ secrets.SG_HOST }}:www/shop.lakeshorelabradoodles.com/public_html/
+          rsync -avz --progress --exclude=".htaccess" -e "ssh -p ${{ secrets.SG_PORT }}" ./build/ ${{ secrets.SG_USER }}@${{ secrets.SG_HOST }}:www/shop.lakeshorelabradoodles.com/public_html/
