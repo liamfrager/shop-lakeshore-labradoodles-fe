@@ -17,8 +17,9 @@ export default function OrderSuccessRoute() {
 
     return (
         <>
-            <h1>Congratulations!</h1>
-            <h3>Your purchase will be shipped shortly.</h3>
+            <h1>Thank you for your purchase! 🐾</h1>
+            <h3>Your order is being processed and will be shipped soon.</h3>
+            <h3>Check your email for order details.</h3>
         </>
     );
 }
