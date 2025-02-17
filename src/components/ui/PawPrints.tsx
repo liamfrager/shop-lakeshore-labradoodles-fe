@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
 
@@ -19,7 +19,7 @@ export default function PawPrints() {
     const randomBrightColor = () => `hsl(${Math.floor(Math.random() * 360)}, 100%, 60%)`;
 
 
-    const newPaw = (): Paw => {
+    const newPaw = useCallback((): Paw => {
         const randomBrandColor = () => {
             const x = Math.random() * 100;
             if (x > 99.99) {
@@ -42,7 +42,7 @@ export default function PawPrints() {
             size: 4 + Math.floor(Math.random() * 2),
             color: bluePawFound ? randomBrightColor() : randomBrandColor(),
         };
-    }
+    }, [bluePawFound]);
 
     useEffect(() => {
         const generatePaw = () => {
@@ -59,7 +59,7 @@ export default function PawPrints() {
         return () => {
             setPaws([]);
         };
-    }, []);
+    }, [newPaw]);
 
     useEffect(() => {
         const animatePaws = () => {
@@ -78,7 +78,7 @@ export default function PawPrints() {
 
         const interval = setInterval(animatePaws, 16); // ~60fps
         return () => clearInterval(interval);
-    }, [paws]);
+    }, [paws, newPaw]);
 
     const handlePawClick = (color: string) => {
         if (color === 'var(--blue)' || bluePawFound) {
