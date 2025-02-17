@@ -5,7 +5,7 @@ import CartItemDisplay from "../components/cart/CartItemDisplay";
 import OrderService from "../services/OrderService";
 import Loader from "../components/ui/Loader";
 import './CartRoute.css';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CartRoute() {
     const navigate = useNavigate();
@@ -66,8 +66,8 @@ export default function CartRoute() {
         <>
             <h1>Cart</h1>
             {cart ? (
-                <>
-                    <ul className='cart'>
+                Object.entries(cart.items).length > 0 ? (
+                    <ul className='cart bubble'>
                         {Object.entries(cart.items).map(([id, item]) => (
                             <CartItemDisplay
                                 key={id}
@@ -89,7 +89,12 @@ export default function CartRoute() {
                             </div>
                         </li>
                     </ul>
-                </>
+                ) : (
+                    <Link to="/products" className="bubble">
+                        <p>There are no items in your cart!</p>
+                    </Link>
+                )
+
             ) : (
                 <Loader loading={cart} />
             )

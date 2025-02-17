@@ -21,11 +21,11 @@
 }
 
 body, p {
-    margin: 0;
     color: var(--brown);
 }
 
 body {
+    margin: 0;
     background-color: var(--cream);
 }
 
@@ -45,6 +45,9 @@ p {
 
 a {
     color: var(--blue);
+    &:has(*) {
+        text-decoration: none;
+    }
 }
 
 ul {
