@@ -1,0 +1,12 @@
+.content-container {
+    display: flex;
+    flex-direction: column;
+    margin-inline: 5vw;
+    flex: 0 1 105em;
+    padding-bottom: 2em;
+    z-index: 1;
+    pointer-events: none;
+    & *.bubble {
+        pointer-events: all;
+    }
+}

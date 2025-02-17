@@ -1,3 +1,6 @@
+import PawPrints from "./PawPrints";
+import './Content.css';
+
 export default function Content(props: { children: React.ReactElement }) {
     return (
         <div style={{
@@ -6,14 +9,8 @@ export default function Content(props: { children: React.ReactElement }) {
             flexGrow: 1,
         }}
         >
-            <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                marginInline: '5vw',
-                flex: '0 1 105em',
-                paddingBottom: '2em',
-            }}
-            >
+            <PawPrints />
+            <div className="content-container">
                 {props.children}
             </div>
         </div >

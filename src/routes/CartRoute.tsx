@@ -67,7 +67,7 @@ export default function CartRoute() {
             <h1>Cart</h1>
             {cart ? (
                 Object.entries(cart.items).length > 0 ? (
-                    <ul className='cart'>
+                    <ul className='cart bubble'>
                         {Object.entries(cart.items).map(([id, item]) => (
                             <CartItemDisplay
                                 key={id}
