@@ -22,7 +22,7 @@ export default function PawPrints() {
     const newPaw = useCallback((): Paw => {
         const randomBrandColor = () => {
             const x = Math.random() * 100;
-            if (x > 99.99) {
+            if (x > 99) {
                 return 'var(--blue)';
             } else if (x > 80) {
                 return 'var(--light-brown)';
@@ -40,9 +40,27 @@ export default function PawPrints() {
             rotation: Math.floor(Math.random() * 360),
             speed: Math.random() * 1 + 0.5,
             size: 4 + Math.floor(Math.random() * 2),
-            color: bluePawFound ? randomBrightColor() : randomBrandColor(),
+            color: randomBrandColor(),
         };
-    }, [bluePawFound]);
+    }, []);
+
+    useEffect(() => {
+        if (bluePawFound) {
+            const rainbowFlash = () => {
+                setPaws((prevPaws) =>
+                    prevPaws.map(paw => {
+                        return {
+                            ...paw,
+                            color: randomBrightColor(),
+                        }
+                    })
+                );
+            }
+            rainbowFlash();
+            const intervalId = setInterval(rainbowFlash, 1000);
+            return () => clearInterval(intervalId);
+        }
+    }, [bluePawFound])
 
     useEffect(() => {
         const generatePaw = () => {
@@ -55,10 +73,7 @@ export default function PawPrints() {
             setTimeout(generatePaw, i * window.innerHeight * 1.5);
         }
 
-        // Cleanup when the component is unmounted
-        return () => {
-            setPaws([]);
-        };
+        return () => setPaws([]);
     }, [newPaw]);
 
     useEffect(() => {
@@ -81,16 +96,8 @@ export default function PawPrints() {
     }, [paws, newPaw]);
 
     const handlePawClick = (color: string) => {
-        if (color === 'var(--blue)' || bluePawFound) {
+        if (color === 'var(--blue)') {
             setBluePawFound(true);
-            setPaws((prevPaws) =>
-                prevPaws.map(paw => {
-                    return {
-                        ...paw,
-                        color: randomBrightColor(),
-                    }
-                })
-            )
         }
     }
 
@@ -115,8 +122,8 @@ export default function PawPrints() {
                         fontSize: `${paw.size}em`,
                         opacity: 0.5,
                         color: paw.color,
-                        cursor: paw.color === 'var(--blue)' || bluePawFound ? 'pointer' : 'default',
-                        pointerEvents: paw.color === 'var(--blue)' || bluePawFound ? 'auto' : 'none',
+                        cursor: paw.color === 'var(--blue)' ? 'pointer' : 'default',
+                        pointerEvents: paw.color === 'var(--blue)' ? 'auto' : 'none',
                         userSelect: 'none',
                         WebkitUserSelect: 'none',
                         MozUserSelect: 'none',
