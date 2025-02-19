@@ -12,40 +12,47 @@ interface ProductCategoriesProps {
 export default function ProductCategories(props: ProductCategoriesProps) {
     const menuRef = useRef<HTMLDivElement>(null);
     const [isStuck, setIsStuck] = useState<boolean>(false);
+    const [placeholderHeight, setPlaceholderHeight] = useState<number>(0);
 
     useEffect(() => {
         const handleScroll = () => {
             if (menuRef.current) {
-                const rect = menuRef.current.getBoundingClientRect();
-                if (rect.top <= window.scrollY) {
-                    setIsStuck(true);
+                const em = parseFloat(getComputedStyle(document.documentElement).fontSize);
+                if (window.scrollY >= 9 * em) {
+                    if (!isStuck) {
+                        setPlaceholderHeight(menuRef.current.offsetHeight + 32);
+                        setIsStuck(true);
+                    }
                 } else {
-                    setIsStuck(false);
+                    if (isStuck) {
+                        setIsStuck(false);
+                        setPlaceholderHeight(0);
+                    }
                 }
             }
         };
 
         window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [isStuck]);
 
     return (
-        <PeekABooMenu
-            ref={menuRef}
-            isPeekABoo={isStuck}
-            menuItems={[{ name: 'All Products' }, ...props.categories.map(category => ({ name: category }))]}
-            selectedMenuItem={props.selectedCategory}
-            onMenuItemSelect={props.onCategorySelect}
-            peekABooMenuIcon={faSliders}
-            peekABooDirection='right'
-            peekStyle={{
-                position: 'fixed',
-                inset: '9em 1em auto auto',
-            }}
-            booStyle={{ marginBottom: '2em' }}
-        />
+        <>
+            <div style={{ height: placeholderHeight }}></div>
+            <PeekABooMenu
+                ref={menuRef}
+                isPeekABoo={isStuck}
+                menuItems={[{ name: 'All Products' }, ...props.categories.map(category => ({ name: category }))]}
+                selectedMenuItem={props.selectedCategory}
+                onMenuItemSelect={props.onCategorySelect}
+                peekABooMenuIcon={faSliders}
+                peekABooDirection='right'
+                peekStyle={{
+                    position: 'fixed',
+                    inset: '9em 1em auto auto',
+                }}
+                booStyle={{ marginBottom: '2em' }}
+            />
+        </>
     )
 }
