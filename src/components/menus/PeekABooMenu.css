@@ -52,6 +52,9 @@
                 font-size: .8em;
                 color: var(--white);
                 background-color: var(--brown);
+                &:empty {
+                    display: none;
+                }
             }
         }
     }

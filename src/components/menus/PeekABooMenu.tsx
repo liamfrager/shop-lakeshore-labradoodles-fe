@@ -59,7 +59,7 @@ export default function PeekABooMenu(props: PeekABooMenuProps) {
         } else {
             setTimeout(() => ref.current?.classList.add('transition-visibility'), 200);
         }
-    }, [props.isPeekABoo, isMobile, props.peekABooOnMobile]);
+    }, [props.isPeekABoo, isMobile, props.peekABooOnMobile, isPeekABoo, ref]);
 
     // Peek-A-Boo on mobile
     useEffect(() => {
@@ -117,7 +117,7 @@ export default function PeekABooMenu(props: PeekABooMenuProps) {
                     >
                         {item.icon && <FontAwesomeIcon icon={item.icon} />}
                         {item.name}
-                        {item.badge && <span className='badge'>{item.badge}</span>}
+                        <span className='badge'>{item.badge}</span>
                     </li>
                 ))}
             </ul>
