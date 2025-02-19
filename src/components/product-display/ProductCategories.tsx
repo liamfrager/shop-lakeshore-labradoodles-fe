@@ -1,4 +1,7 @@
+import { useEffect, useRef, useState } from 'react';
 import './ProductCategories.css';
+import { faSliders } from '@fortawesome/free-solid-svg-icons';
+import PeekABooMenu from '../menus/PeekABooMenu';
 
 interface ProductCategoriesProps {
     categories: string[],
@@ -7,24 +10,41 @@ interface ProductCategoriesProps {
 }
 
 export default function ProductCategories(props: ProductCategoriesProps) {
+    const menuRef = useRef<HTMLDivElement>(null);
+    const [isStuck, setIsStuck] = useState<boolean>(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (menuRef.current) {
+                const rect = menuRef.current.getBoundingClientRect();
+                if (rect.top <= window.scrollY) {
+                    setIsStuck(true);
+                } else {
+                    setIsStuck(false);
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
-        <div className="row product-categories">
-            <h3
-                key="All Products"
-                className={`bubble product-category ${props.selectedCategory === 'All Products' && 'selected-category'}`}
-                onClick={() => props.onCategorySelect('All Products')}
-            >
-                All Products
-            </h3>
-            {props.categories.map(category => (
-                <h3
-                    key={category}
-                    className={`bubble product-category ${category === props.selectedCategory && 'selected-category'}`}
-                    onClick={() => props.onCategorySelect(category)}
-                >
-                    {category}
-                </h3>
-            ))}
-        </div>
+        <PeekABooMenu
+            ref={menuRef}
+            isPeekABoo={isStuck}
+            menuItems={[{ name: 'All Products' }, ...props.categories.map(category => ({ name: category }))]}
+            selectedMenuItem={props.selectedCategory}
+            onMenuItemSelect={props.onCategorySelect}
+            peekABooMenuIcon={faSliders}
+            peekABooOptions={{
+                peekABooPosition: 'fixed',
+                peekABooInset: '9em 1em auto auto',
+                peekABooDirection: 'right',
+            }}
+        />
     )
 }
