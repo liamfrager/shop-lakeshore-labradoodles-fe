@@ -10,6 +10,13 @@
     .peek-a-boo-toggle {
         cursor: pointer;
         width: fit-content;
+        transition: opacity .5s ease-in-out, border-radius .2s ease-in-out;
+        &.selected {
+            color: var(--blue);
+        }
+        &:hover, &.selected:hover {
+            color: var(--tan);
+        }
     }
     ul.peek-a-boo-list {
         li.peek-a-boo-list-item {
@@ -55,15 +62,19 @@
     .peek-a-boo-toggle {
         cursor: pointer;
         width: fit-content;
-        transition: border-radius .2s ease-in-out;
+        visibility: visible;
+        opacity: 1;
+    }
+    &.transition-visibility ul.peek-a-boo-list {
+        transition: opacity .2s ease-in-out, border-radius .2s ease-in-out, visibility .2s ease-in-out;
     }
     ul.peek-a-boo-list {
         position: absolute;
         top: 100%;
         margin-top: .5em;
-        opacity: 1;
         visibility: visible;
-        transition: opacity .2s ease-in-out, visibility .2s ease-in-out, border-radius .2s ease-in-out;
+        opacity: 1;
+        transition: opacity .2s ease-in-out, border-radius .2s ease-in-out;
 
         &.hide-menu {
             opacity: 0;
@@ -107,7 +118,10 @@
 /* BOOING */
 .peek-a-boo-container.boo {
     .peek-a-boo-toggle {
-        display: none;
+        visibility: hidden;
+        opacity: 0;
+        max-height: 0;
+        padding: 0;
     }
 
     ul.peek-a-boo-list {

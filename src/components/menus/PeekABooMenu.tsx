@@ -54,6 +54,11 @@ export default function PeekABooMenu(props: PeekABooMenuProps) {
         } else {
             setIsPeekABoo(props.isPeekABoo);
         }
+        if (isPeekABoo) {
+            ref.current?.classList.remove('transition-visibility');
+        } else {
+            setTimeout(() => ref.current?.classList.add('transition-visibility'), 200);
+        }
     }, [props.isPeekABoo, isMobile, props.peekABooOnMobile]);
 
     // Peek-A-Boo on mobile
@@ -84,18 +89,16 @@ export default function PeekABooMenu(props: PeekABooMenuProps) {
             `}
             style={isPeekABoo ? props.peekStyle : props.booStyle}
         >
-            {isPeekABoo &&
-                <span
-                    className={`
-                        peek-a-boo-toggle
-                        ${showMenu ? 'selected' : ''}
-                        bubble
-                    `}
-                    onClick={handlePeekABooToggle}
-                >
-                    <FontAwesomeIcon icon={props.peekABooMenuIcon || faBars} />
-                </span>
-            }
+            <span
+                className={`
+                    peek-a-boo-toggle
+                    ${showMenu ? 'selected' : ''}
+                    bubble
+                `}
+                onClick={handlePeekABooToggle}
+            >
+                <FontAwesomeIcon icon={props.peekABooMenuIcon || faBars} />
+            </span>
             <ul className={`
                 peek-a-boo-list
                 ${isPeekABoo ? 'col' : 'row'}
