@@ -1,12 +1,6 @@
-.selected {
-    color: var(--blue);
-}
-.selected:hover, .peek-a-boo-list-item:hover {
-    color: var(--tan);
-}
-
 /* PEEKING AND BOOING */
 .peek-a-boo-container {
+    position: relative;
     z-index: 1;
     text-wrap: nowrap;
     width: fit-content;
@@ -23,6 +17,18 @@
             cursor: pointer;
             list-style: none;
             margin: 0;
+            &:hover, &.selected:hover {
+                color: var(--tan);
+                .badge {
+                    background-color: var(--tan);
+                }
+            }
+            &.selected {
+                color: var(--blue);
+                .badge {
+                    background-color: var(--blue);
+                }
+            }
             svg {
                 margin-right: .5em;
             }

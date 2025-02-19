@@ -4,13 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import './PeekABooMenu.css';
 
-interface PeekABooMenuOptions {
-    peekABooPosition?: 'static' | 'relative' | 'absolute' | 'fixed',
-    peekABooInset?: string,
-    peekABooDirection?: 'left' | 'right',
-    peekABooOnMobile?: boolean,
-}
-
 interface MenuItem {
     name: string,
     route?: string,
@@ -24,7 +17,10 @@ interface PeekABooMenuProps {
     selectedMenuItem: string,
     onMenuItemSelect: (menuItem: string) => void,
     peekABooMenuIcon?: IconProp,
-    peekABooOptions?: PeekABooMenuOptions
+    peekABooOnMobile?: boolean
+    peekABooDirection: 'left' | 'right',
+    peekStyle?: React.CSSProperties,
+    booStyle?: React.CSSProperties,
     ref?: React.RefObject<HTMLDivElement | null>
 }
 export default function PeekABooMenu(props: PeekABooMenuProps) {
@@ -53,16 +49,16 @@ export default function PeekABooMenu(props: PeekABooMenuProps) {
     }, [showMenu, ref]);
 
     useEffect(() => {
-        if (props.peekABooOptions?.peekABooOnMobile !== false && isMobile) {
+        if (props.peekABooOnMobile !== false && isMobile) {
             setIsPeekABoo(true);
         } else {
             setIsPeekABoo(props.isPeekABoo);
         }
-    }, [props.isPeekABoo, isMobile, props.peekABooOptions?.peekABooOnMobile]);
+    }, [props.isPeekABoo, isMobile, props.peekABooOnMobile]);
 
     // Peek-A-Boo on mobile
     useEffect(() => {
-        if (props.peekABooOptions?.peekABooOnMobile !== false) {
+        if (props.peekABooOnMobile !== false) {
             const checkSize = () => {
                 setIsMobile(window.innerWidth < 600);
             };
@@ -71,7 +67,7 @@ export default function PeekABooMenu(props: PeekABooMenuProps) {
             window.addEventListener("resize", checkSize);
             return () => window.removeEventListener("resize", checkSize);
         }
-    }, [props.peekABooOptions?.peekABooOnMobile]);
+    }, [props.peekABooOnMobile]);
 
     const handlePeekABooToggle = () => {
         setShowMenu((prev) => !prev);
@@ -83,13 +79,10 @@ export default function PeekABooMenu(props: PeekABooMenuProps) {
             className={`
                 peek-a-boo-container
                 ${isPeekABoo ? 'peek' : 'boo'}
-                ${props.peekABooOptions?.peekABooDirection === 'right' ? 'right' : 'left'}
+                ${props.peekABooDirection === 'right' ? 'right' : 'left'}
                 col
             `}
-            style={isPeekABoo ? {
-                position: props.peekABooOptions?.peekABooPosition || 'relative',
-                inset: props.peekABooOptions?.peekABooInset,
-            } : undefined}
+            style={isPeekABoo ? props.peekStyle : props.booStyle}
         >
             {isPeekABoo &&
                 <span

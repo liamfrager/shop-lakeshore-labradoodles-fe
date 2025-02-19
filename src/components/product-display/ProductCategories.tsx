@@ -40,11 +40,12 @@ export default function ProductCategories(props: ProductCategoriesProps) {
             selectedMenuItem={props.selectedCategory}
             onMenuItemSelect={props.onCategorySelect}
             peekABooMenuIcon={faSliders}
-            peekABooOptions={{
-                peekABooPosition: 'fixed',
-                peekABooInset: '9em 1em auto auto',
-                peekABooDirection: 'right',
+            peekABooDirection='right'
+            peekStyle={{
+                position: 'fixed',
+                inset: '9em 1em auto auto',
             }}
+            booStyle={{ marginBottom: '2em' }}
         />
     )
 }

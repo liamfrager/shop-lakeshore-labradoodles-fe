@@ -14,7 +14,8 @@ export default function Header() {
     const [cartCount, setCartCount] = useState<number>(0);
 
     useEffect(() => {
-        setSelectedMenuItem(location.pathname.split('/')[1]);
+        const path = location.pathname.split('/')[1];
+        setSelectedMenuItem(path.charAt(0).toUpperCase() + path.slice(1));
         setCartCount(CartService.getCartCount());
     }, [location]);
 
@@ -37,9 +38,7 @@ export default function Header() {
                 menuItems={menuItems}
                 selectedMenuItem={selectedMenuItem}
                 onMenuItemSelect={handleMenuItemSelect}
-                peekABooOptions={{
-                    peekABooDirection: 'right',
-                }}
+                peekABooDirection='right'
             />
         </nav>
     )
